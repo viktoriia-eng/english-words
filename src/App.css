@@ -1,0 +1,413 @@
+/* ---------- Палітра ---------- */
+:root {
+  --bg: #f3f6fb;
+  --card: #ffffff;
+  --ink: #1f2a44;
+  --muted: #6b7690;
+  --line: #e1e8f4;
+  --bar: #e3eaf6;
+
+  --primary: #2f7cf6;
+  --primary-2: #20b2a6;
+  --accent: #ffc233;
+  --ok: #22b573;
+  --bad: #ef5b5b;
+
+  --radius: 20px;
+  --shadow: 0 2px 0 rgba(31, 42, 68, 0.04), 0 8px 24px rgba(31, 42, 68, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12192b;
+    --card: #1b2540;
+    --ink: #eef2fb;
+    --muted: #9fb0cf;
+    --line: #2b3858;
+    --bar: #0d1424;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* ---------- База ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: block;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+.app {
+  min-height: 100vh;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.center { text-align: center; }
+.muted { color: var(--muted); }
+
+/* ---------- Шапка ---------- */
+.hero {
+  text-align: center;
+  padding: 16px 0 8px;
+}
+
+.hero__logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 8px;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  box-shadow: var(--shadow);
+}
+
+.hero h1 {
+  font-size: 26px;
+  letter-spacing: -0.3px;
+}
+
+.hero__name {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #3a2b00;
+  font-weight: 800;
+}
+
+/* ---------- Вкладки ---------- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.tab {
+  padding: 10px 16px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.tab:active { transform: scale(0.97); }
+
+.tab--on {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: #fff;
+}
+
+/* ---------- Картки ---------- */
+.card {
+  margin: 14px 0;
+  padding: 20px;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.card h2 { font-size: 20px; margin-bottom: 6px; }
+.card h3 { font-size: 18px; margin: 4px 0; }
+
+.card--tip {
+  border-color: transparent;
+  background: linear-gradient(135deg, rgba(255, 194, 51, 0.22), rgba(32, 178, 166, 0.14));
+}
+
+.label {
+  margin: 18px 0 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.emoji { font-size: 56px; }
+.result { margin: 12px 0 4px; font-size: 22px; font-weight: 800; }
+.big { font-size: 30px; margin: 8px 0 16px; }
+
+/* ---------- Кнопки ---------- */
+.btn {
+  margin: 12px 6px 0 0;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn--ghost {
+  background: var(--card);
+  color: var(--ink);
+  border: 2px solid var(--line);
+}
+
+.actions { text-align: center; margin-top: 8px; }
+
+.icon {
+  padding: 6px;
+  border: 0;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ---------- Вибір ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.choice {
+  padding: 14px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.choice--on,
+.choice--ok {
+  border-color: var(--ok);
+  background: var(--ok);
+  color: #fff;
+}
+
+.choice--bad {
+  border-color: var(--bad);
+  background: var(--bad);
+  color: #fff;
+}
+
+/* ---------- Список ігор ---------- */
+.game {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+
+.game:hover { border-color: var(--primary); }
+.game:active { transform: scale(0.99); }
+.game b, .game .muted { display: block; }
+
+.game__icon {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  border-radius: 14px;
+  background: var(--bg);
+}
+
+/* ---------- Список слів ---------- */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.row:last-child { border-bottom: 0; }
+.en { font-weight: 800; }
+
+/* ---------- Тренажер ---------- */
+.progress {
+  height: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.progress i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-2));
+  transition: width 0.3s ease;
+}
+
+.flash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 180px;
+  margin: 12px 0 8px;
+  padding: 16px;
+  border: 0;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: #fff;
+  font-size: 30px;
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  margin: 12px 0;
+}
+
+.tiles--answer {
+  padding: 8px;
+  border: 2px dashed var(--line);
+  border-radius: 14px;
+}
+
+.tile {
+  width: 46px;
+  height: 50px;
+  border: 2px solid var(--primary);
+  border-radius: 12px;
+  background: var(--card);
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.tile--placed {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ---------- Три колонки ---------- */
+.wrap--wide {
+  max-width: 1200px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.board__col > .card:first-child {
+  margin-top: 0;
+}
+
+/* на вузьких екранах: тренажер першим, потім списки */
+.board__col--main { order: 1; }
+.board__col--todo { order: 2; }
+.board__col--done { order: 3; }
+
+@media (min-width: 900px) {
+  .board {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr);
+    align-items: start;
+  }
+
+  .board__col--done { order: 1; }
+  .board__col--todo { order: 2; }
+  .board__col--main { order: 3; }
+
+  /* бічні списки прокручуються всередині колонки */
+  .board__col--todo > .card,
+  .board__col--done > .card {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+}
+
+/* ---------- Верхня панель ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  background: var(--bar);
+}
+
+.topbar__name {
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #3a2b00;
+  font-weight: 800;
+}
+
+.topbar__name:empty {
+  display: none;
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.topbar__logo {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+}
+
+.topbar__brand h1 {
+  font-size: 20px;
+  letter-spacing: -0.2px;
+}

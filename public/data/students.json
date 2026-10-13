@@ -1,0 +1,7 @@
+{
+  "students": [
+    { "id": "anna", "name": "Анна" },
+    { "id": "oleh", "name": "Олег" },
+    { "id": "maria", "name": "Марія" }
+  ]
+}

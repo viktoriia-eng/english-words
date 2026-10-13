@@ -1,0 +1,120 @@
+/* Кабінет вчителя: використовує змінні з App.css */
+
+.field {
+  display: block;
+  margin: 12px 0 0;
+}
+
+.field > span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.app input,
+.app select,
+.app textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+}
+
+.app input:focus,
+.app select:focus,
+.app textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.app textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.app textarea.mono {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 13px;
+  min-height: 160px;
+}
+
+.small { font-size: 14px; margin: 8px 0 4px; }
+
+.code {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.btn:disabled { opacity: 0.55; cursor: default; }
+
+.btn--link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.more {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+}
+
+.more summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.toast {
+  position: sticky;
+  top: 8px;
+  z-index: 5;
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--bg);
+  text-align: center;
+  font-weight: 700;
+}
+
+.notice {
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 194, 51, 0.25);
+  font-size: 14px;
+}
+
+.steps {
+  margin: 8px 0 12px;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.steps code {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.row__uk {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px !important;
+}
+
+.row .en {
+  min-width: 90px;
+  max-width: 40%;
+  word-break: break-word;
+}
