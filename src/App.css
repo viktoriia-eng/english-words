@@ -278,22 +278,56 @@ h1, h2, h3, h4, p {
   transition: width 0.3s ease;
 }
 
-.flash {
+/* Флеш-картка з анімацією перевертання */
+.flip-card {
+  display: block;
+  width: 100%;
+  margin: 12px 0 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.flip-card__inner {
+  position: relative;
+  display: block;
+  min-height: 180px;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.flip-card--back .flip-card__inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card__face {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  min-height: 180px;
-  margin: 12px 0 8px;
   padding: 16px;
-  border: 0;
   border-radius: var(--radius);
   background: linear-gradient(135deg, var(--primary), var(--primary-2));
   color: #fff;
   font-size: 30px;
   font-weight: 800;
   text-align: center;
-  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card__face--back {
+  background: linear-gradient(135deg, var(--primary-2), var(--primary));
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card__inner {
+    transition: none;
+  }
 }
 
 .tiles {

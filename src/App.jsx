@@ -109,13 +109,16 @@ function Flash({ word, onNext }) {
     return (
         <>
             <button
-                className="flash"
+                className={"flip-card" + (back ? " flip-card--back" : "")}
                 onClick={() => {
-                    if (!back) speak(word.en);
+                    speak(word.en);
                     setBack(!back);
                 }}
             >
-                {back ? word.en : word.uk}
+                <span className="flip-card__inner">
+                    <span className="flip-card__face">{word.en}</span>
+                    <span className="flip-card__face flip-card__face--back">{word.uk}</span>
+                </span>
             </button>
             <p className="muted center">Натисни на картку, щоб перегорнути</p>
             <div className="actions">
