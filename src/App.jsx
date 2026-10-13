@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Admin from "./Admin.jsx";
 
@@ -292,12 +292,13 @@ function WordList({ title, items, learned, onToggle }) {
 
 /* ---------- app ---------- */
 
-function Shell({ name, children }) {
+function Shell({ name, center, children }) {
     return (
         <div className="app">
             <div className="wrap wrap--wide">
                 <header className="topbar">
                     <div className="topbar__name">{name}</div>
+                    <div className="topbar__center">{center}</div>
                     <div className="topbar__brand">
                         <span className="topbar__logo">📘</span>
                         <h1>Англійський словник</h1>
@@ -309,11 +310,51 @@ function Shell({ name, children }) {
     );
 }
 
+/* Спливаюче вікно: закривається хрестиком, кліком по тлу або клавішею Esc */
+function Modal({ title, onClose, children }) {
+    useEffect(() => {
+        const onKey = (e) => {
+            if (e.key === "Escape") onClose();
+        };
+        document.addEventListener("keydown", onKey);
+        const prevOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.removeEventListener("keydown", onKey);
+            document.body.style.overflow = prevOverflow;
+        };
+    }, [onClose]);
+
+    return (
+        <div
+            className="modal"
+            onMouseDown={(e) => {
+                if (e.target === e.currentTarget) onClose();
+            }}
+        >
+            <div className="modal__dialog" role="dialog" aria-modal="true" aria-label={title}>
+                <div className="modal__head">
+                    <h2>{title}</h2>
+                    <button className="modal__close" onClick={onClose} aria-label="Закрити">✕</button>
+                </div>
+                <div className="modal__body">{children}</div>
+            </div>
+        </div>
+    );
+}
+
 function Student() {
     const student = useStudent();
     const [learnedList, mark] = useLearned();
     const [count, setCount] = useState(5);
     const [session, setSession] = useState(null);
+    const [open, setOpen] = useState(false);
+
+    // закриття вікна завершує і поточне тренування
+    const closeTrainer = useCallback(() => {
+        setOpen(false);
+        setSession(null);
+    }, []);
 
     if (student.status === "loading") {
         return <Shell><div className="card center muted">Завантаження…</div></Shell>;
@@ -335,8 +376,14 @@ function Student() {
         setSession({ game, queue: pool });
     };
 
+    const trainerButton = (
+        <button className="topbar__trainer" onClick={() => setOpen(true)}>
+            🎮 Навчальний тренажер
+        </button>
+    );
+
     return (
-        <Shell name={name}>
+        <Shell name={name} center={trainerButton}>
             <main className="board">
                 {/* Колонка 1: вивчені слова */}
                 <aside className="board__col board__col--done">
@@ -347,9 +394,10 @@ function Student() {
                 <aside className="board__col board__col--todo">
                     <WordList title="📚 Словничок" items={todo} learned={false} onToggle={mark} />
                 </aside>
+            </main>
 
-                {/* Колонка 3: тренажер, а під ним порада дня */}
-                <div className="board__col board__col--main">
+            {open && (
+                <Modal title="🎮 Навчальний тренажер" onClose={closeTrainer}>
                     {session ? (
                         <Trainer
                             session={session}
@@ -358,8 +406,7 @@ function Student() {
                             onClose={() => setSession(null)}
                         />
                     ) : (
-                        <section className="card">
-                            <h2>🎮 Навчальний тренажер</h2>
+                        <div>
                             <p className="muted">Обери скільки слів хочеш вивчити та гру!</p>
 
                             <h4 className="label">1. Кількість слів для тренування:</h4>
@@ -384,16 +431,15 @@ function Student() {
                                 <button key={key} className="game" onClick={() => start(key)}>
                                     <span className="game__icon">{icon}</span>
                                     <span>
-                    <b>{title}</b>
-                    <span className="muted">{desc}</span>
-                  </span>
+                                        <b>{title}</b>
+                                        <span className="muted">{desc}</span>
+                                    </span>
                                 </button>
                             ))}
-                        </section>
+                        </div>
                     )}
-
-                </div>
-            </main>
+                </Modal>
+            )}
         </Shell>
     );
 }
