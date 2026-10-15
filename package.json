@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "images": "node scripts/make-image-list.mjs",
+    "predev": "npm run images",
+    "prebuild": "npm run images"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -24,4 +27,5 @@
     "globals": "^17.12.0",
     "vite": "^8.3.0"
   }
+
 }

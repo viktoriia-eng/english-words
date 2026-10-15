@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Admin from "./Admin.jsx";
+import { IMAGE_NAMES } from "./imageNames.js";
 
 /*
   Посилання учня: http://localhost:5173/?s=anna
@@ -15,12 +16,6 @@ const DEMO = {
     name: "Демо",
     words: [
         { en: "apple", uk: "яблуко" },
-        { en: "cat", uk: "кіт" },
-        { en: "dog", uk: "собака" },
-        { en: "book", uk: "книга" },
-        { en: "school bag", uk: "рюкзак" },
-        { en: "friend", uk: "друг" },
-        { en: "sun", uk: "сонце" },
     ],
 };
 
@@ -54,6 +49,26 @@ function speak(text) {
     } catch {
         /* голос недоступний */
     }
+}
+
+/*
+  Картинки до слів лежать у public/images/ і підхоплюються автоматично за назвою:
+  слово "apple" -> public/images/apple.webp, "school bag" -> public/images/school-bag.webp
+  Інше розширення (png, jpg) змінюється однією константою нижче.
+*/
+const IMG_EXT = "webp";
+
+function toSlug(en) {
+    return en
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "");
+}
+
+function imageUrl(en) {
+    const slug = toSlug(en);
+    return `${import.meta.env.BASE_URL}images/${slug}.${IMG_EXT}`;
 }
 
 /* ---------- hooks ---------- */
@@ -152,7 +167,7 @@ function Quiz({ word, all, onNext }) {
                 {word.en}
                 <button className="icon" onClick={() => speak(word.en)} aria-label="Вимова">🔊</button>
             </h2>
-            <div className="grid">
+            <div className="grid grid--two">
                 {options.map((o, i) => {
                     let state = "";
                     if (picked !== null) {
@@ -222,6 +237,45 @@ function Build({ word, onNext }) {
     );
 }
 
+// Гра за картинками не залежить від словничка: слова беруться з IMAGE_NAMES
+function Picture({ word, onNext }) {
+    const [picked, setPicked] = useState(null);
+    const [options] = useState(() => {
+        const slug = toSlug(word.en);
+        const others = shuffle(IMAGE_NAMES.filter((n) => toSlug(n) !== slug)).slice(0, 3);
+        return shuffle([...others, word.en]);
+    });
+
+    const pick = (i) => {
+        if (picked !== null) return;
+        setPicked(i);
+        speak(word.en);
+        setTimeout(() => onNext(options[i] === word.en), 900);
+    };
+
+    return (
+        <>
+            <div className="picture">
+                <img src={imageUrl(word.en)} alt="" />
+            </div>
+            <div className="grid grid--two">
+                {options.map((o, i) => {
+                    let state = "";
+                    if (picked !== null) {
+                        if (o === word.en) state = " choice--ok";
+                        else if (i === picked) state = " choice--bad";
+                    }
+                    return (
+                        <button key={o} className={"choice" + state} onClick={() => pick(i)}>
+                            {o}
+                        </button>
+                    );
+                })}
+            </div>
+        </>
+    );
+}
+
 function Trainer({ session, allWords, onLearned, onClose }) {
     const [i, setI] = useState(0);
     const [score, setScore] = useState(0);
@@ -243,7 +297,8 @@ function Trainer({ session, allWords, onLearned, onClose }) {
     const next = (ok) => {
         if (ok) {
             setScore((s) => s + 1);
-            onLearned(word.en);
+            // слова з картинок не з словничка — вивченими їх не позначаємо
+            if (game !== "picture") onLearned(word.en);
         }
         setI((n) => n + 1);
     };
@@ -256,6 +311,7 @@ function Trainer({ session, allWords, onLearned, onClose }) {
             {game === "flash" && <Flash key={i} word={word} onNext={next} />}
             {game === "quiz" && <Quiz key={i} word={word} all={allWords} onNext={next} />}
             {game === "build" && <Build key={i} word={word} onNext={next} />}
+            {game === "picture" && <Picture key={i} word={word} onNext={next} />}
 
             <div className="actions">
                 <button className="btn btn--ghost" onClick={onClose}>Вийти</button>
@@ -372,9 +428,15 @@ function Student() {
     const todo = words.filter((w) => !w.learned);
 
     const start = (game) => {
-        let pool = todo.length ? todo : words;
+        let pool;
+        if (game === "picture") {
+            // картинки не залежать від словничка
+            pool = shuffle(IMAGE_NAMES.map((en) => ({ en })));
+        } else {
+            const fresh = words.filter((w) => !w.learned);
+            pool = shuffle(fresh.length ? fresh : words);
+        }
         if (!pool.length) return alert("Поки немає слів 🙂");
-        pool = shuffle(pool);
         if (count) pool = pool.slice(0, count);
         setSession({ game, queue: pool });
     };
@@ -430,6 +492,7 @@ function Student() {
                                 ["flash", "🎴", "Гра 1: Флеш-картки", "Перегортай та повторюй вимову"],
                                 ["quiz", "🎯", "Гра 2: Вікторина", "Обери 1 правильний переклад із 4"],
                                 ["build", "🧩", "Гра 3: Склади фразу", "Збери слово або фразу з літер"],
+                                ["picture", "🖼️", "Гра 4: Вгадай за картинкою", "Подивись на картинку та обери слово"],
                             ].map(([key, icon, title, desc]) => (
                                 <button key={key} className="game" onClick={() => start(key)}>
                                     <span className="game__icon">{icon}</span>
