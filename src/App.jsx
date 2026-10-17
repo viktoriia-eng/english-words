@@ -71,6 +71,53 @@ function imageUrl(en) {
     return `${import.meta.env.BASE_URL}images/${slug}.${IMG_EXT}`;
 }
 
+/* ---------- icons ---------- */
+
+function SpeakerIcon() {
+    return (
+        <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 9.5v5h4l5.5 4.5V5L7 9.5H3z" fill="currentColor" />
+            <path
+                d="M15.8 8.8a4.6 4.6 0 0 1 0 6.4M18.6 6a8.6 8.6 0 0 1 0 12"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+            />
+        </svg>
+    );
+}
+
+function CheckIcon() {
+    return (
+        <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+                d="M4 12.8l5.2 5.2L20 7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    );
+}
+
+function UndoIcon() {
+    return (
+        <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+                d="M9 5L4 10l5 5M4 10h10.5a5.5 5.5 0 0 1 0 11H11"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    );
+}
+
 /* ---------- hooks ---------- */
 
 function useStudent() {
@@ -137,7 +184,9 @@ function Flash({ word, onNext }) {
             </button>
             <p className="muted center">Натисни на картку, щоб перегорнути</p>
             <div className="actions">
-                <button className="btn btn--ghost" onClick={() => speak(word.en)}>🔊 Вимова</button>
+                <button className="btn btn--ghost" onClick={() => speak(word.en)}>
+                    <SpeakerIcon /> Вимова
+                </button>
                 <button className="btn" onClick={() => onNext(true)}>Знаю ✅</button>
                 <button className="btn btn--ghost" onClick={() => onNext(false)}>Ще вчу</button>
             </div>
@@ -165,7 +214,9 @@ function Quiz({ word, all, onNext }) {
         <>
             <h2 className="center big">
                 {word.en}
-                <button className="icon" onClick={() => speak(word.en)} aria-label="Вимова">🔊</button>
+                <button className="icon icon--speak" onClick={() => speak(word.en)} aria-label="Вимова">
+                    <SpeakerIcon />
+                </button>
             </h2>
             <div className="grid grid--two">
                 {options.map((o, i) => {
@@ -334,13 +385,15 @@ function WordList({ title, items, learned, onToggle }) {
                         <div className="muted">{w.uk}</div>
                     </div>
                     <div>
-                        <button className="icon" onClick={() => speak(w.en)} aria-label="Вимова">🔊</button>
+                        <button className="icon icon--speak" onClick={() => speak(w.en)} aria-label="Вимова">
+                            <SpeakerIcon />
+                        </button>
                         <button
-                            className="icon"
+                            className={"icon " + (learned ? "icon--undo" : "icon--check")}
                             onClick={() => onToggle(w.en, !learned)}
                             aria-label={learned ? "Повернути у словничок" : "Позначити вивченим"}
                         >
-                            {learned ? "↩️" : "✅"}
+                            {learned ? <UndoIcon /> : <CheckIcon />}
                         </button>
                     </div>
                 </div>

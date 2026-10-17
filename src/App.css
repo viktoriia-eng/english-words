@@ -182,11 +182,38 @@ h1, h2, h3, h4, p {
 .actions { text-align: center; margin-top: 8px; }
 
 .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px;
   border: 0;
   background: none;
   font-size: 20px;
   cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.15s ease;
+}
+
+.icon:hover { opacity: 0.8; }
+.icon:active { transform: scale(0.92); }
+
+.ico {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.icon--speak { color: var(--primary); }
+.icon--check { color: var(--ok); }
+.icon--undo { color: var(--muted); }
+
+/* іконка всередині звичайної кнопки */
+.btn .ico {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  vertical-align: -4px;
+  color: var(--primary);
 }
 
 /* ---------- Вибір ---------- */
@@ -420,8 +447,8 @@ h1, h2, h3, h4, p {
   justify-self: start;
   padding: 4px 14px;
   border-radius: 999px;
-  background: var(--accent);
-  color: #3a2b00;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: #fff;
   font-weight: 800;
 }
 
