@@ -67,9 +67,8 @@ function speak(text) {
         whenVoicesReady(() => {
             const u = new SpeechSynthesisUtterance(text);
             u.lang = "en-US";
-            u.rate = 0.85;
+            u.rate = 0.8;
             const v = findVoice();
-            console.log(v)
             if (v) u.voice = v;
             window.speechSynthesis.cancel();
             window.speechSynthesis.speak(u);
