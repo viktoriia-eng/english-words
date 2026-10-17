@@ -586,3 +586,32 @@ h1, h2, h3, h4, p {
 .game:disabled:hover {
   border-color: var(--line);
 }
+
+/* ---------- Рожева тема (вмикається галочкою в кабінеті вчителя) ---------- */
+:root[data-theme="pink"] {
+  --bg: #fff0f6;
+  --card: #ffffff;
+  --ink: #3b2a4a;
+  --muted: #8a7a99;
+  --line: #f3d3e6;
+  --bar: #fbdcec;
+
+  --primary: #d6459a;
+  --primary-2: #8e5cf0;
+  --ok: #2fb67c;
+  --bad: #e5484d;
+
+  --shadow: 0 2px 0 rgba(214, 69, 154, 0.06), 0 8px 24px rgba(142, 92, 240, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="pink"] {
+    --bg: #1d1526;
+    --card: #2a1f37;
+    --ink: #f4eafc;
+    --muted: #b3a3c4;
+    --line: #44335a;
+    --bar: #150f1d;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+}

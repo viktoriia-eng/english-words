@@ -415,6 +415,15 @@ function Student() {
         setSession(null);
     }, []);
 
+    // тема учня береться з його JSON (поле "theme": "pink")
+    const theme = student.status === "ready" ? student.data.theme : undefined;
+    useEffect(() => {
+        const root = document.documentElement;
+        if (theme) root.setAttribute("data-theme", theme);
+        else root.removeAttribute("data-theme");
+        return () => root.removeAttribute("data-theme");
+    }, [theme]);
+
     if (student.status === "loading") {
         return <Shell><div className="card center muted">Завантаження…</div></Shell>;
     }

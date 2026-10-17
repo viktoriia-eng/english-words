@@ -304,6 +304,15 @@ export default function Admin() {
   const editUk = (i, value) => setWords(data.words.map((w, k) => (k === i ? { ...w, uk: value } : w)));
   const removeWord = (i) => setWords(data.words.filter((_, k) => k !== i));
 
+  // тема учня: "pink" записується у його JSON, без галочки поля theme немає
+  const setPinkTheme = (on) => {
+    const { theme, ...rest } = data; // eslint-disable-line no-unused-vars
+    const next = on ? { ...rest, theme: "pink" } : rest;
+    setData(next);
+    setDirty(true);
+    writeDraft(id, next);
+  };
+
   /* --- учні --- */
 
   const addStudent = () => {
@@ -380,6 +389,15 @@ export default function Admin() {
 
             {id && (
                 <>
+                  <label className="check">
+                    <input
+                        type="checkbox"
+                        checked={data.theme === "pink"}
+                        onChange={(e) => setPinkTheme(e.target.checked)}
+                    />
+                    <span>🌸 Рожева тема для цього учня</span>
+                  </label>
+
                   <p className="muted small">Посилання учня:</p>
                   <code className="code">{link}</code>
                   <div>

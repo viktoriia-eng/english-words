@@ -118,3 +118,22 @@
   max-width: 40%;
   word-break: break-word;
 }
+
+/* галочка вибору теми */
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.app .check input[type="checkbox"] {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
