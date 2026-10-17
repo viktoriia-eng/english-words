@@ -33,7 +33,9 @@ function shuffle(arr) {
 function findVoice() {
     const voices = window.speechSynthesis.getVoices().filter((v) => v.lang.startsWith("en"));
     return (
-        voices.find((v) => /Google US English|Aria|Jenny|Samantha/i.test(v.name)) || voices[0]
+        voices.find((v) => /Google UK English|Aria|Jenny|Samantha/i.test(v.name)) ||
+        voices.find((v) => /Саманта/i.test(v.name))
+        || voices[0]
     );
 }
 
@@ -67,6 +69,7 @@ function speak(text) {
             u.lang = "en-US";
             u.rate = 0.85;
             const v = findVoice();
+            console.log(v)
             if (v) u.voice = v;
             window.speechSynthesis.cancel();
             window.speechSynthesis.speak(u);
