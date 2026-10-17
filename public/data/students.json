@@ -1,7 +1,20 @@
 {
   "students": [
-    { "id": "anna", "name": "Анна" },
-    { "id": "oleh", "name": "Олег" },
-    { "id": "maria", "name": "Марія" }
+    {
+      "id": "anna",
+      "name": "Анна"
+    },
+    {
+      "id": "oleh",
+      "name": "Олег"
+    },
+    {
+      "id": "maria",
+      "name": "Марія"
+    },
+    {
+      "id": "matviy",
+      "name": "Matviy"
+    }
   ]
 }
