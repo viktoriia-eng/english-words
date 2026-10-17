@@ -30,22 +30,47 @@ function shuffle(arr) {
     return a;
 }
 
-function pickVoice() {
+function findVoice() {
     const voices = window.speechSynthesis.getVoices().filter((v) => v.lang.startsWith("en"));
     return (
         voices.find((v) => /Google US English|Aria|Jenny|Samantha/i.test(v.name)) || voices[0]
     );
 }
 
+// якщо голоси ще не завантажились, чекаємо на них (максимум 0,6 с)
+function whenVoicesReady(callback) {
+    const synth = window.speechSynthesis;
+    if (synth.getVoices().length) return callback();
+
+    let done = false;
+    const finish = () => {
+        if (done) return;
+        done = true;
+        synth.removeEventListener("voiceschanged", finish);
+        callback();
+    };
+    synth.addEventListener("voiceschanged", finish);
+    setTimeout(finish, 600);
+}
+
+// просимо браузер завантажити голоси одразу при відкритті сторінки
+try {
+    window.speechSynthesis.getVoices();
+} catch {
+    /* озвучення недоступне */
+}
+
 function speak(text) {
     try {
-        const u = new SpeechSynthesisUtterance(text);
-        u.lang = "en-US";
-        u.rate = 0.85;
-        const v = pickVoice();
-        if (v) u.voice = v;
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(u);
+        whenVoicesReady(() => {
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = "en-US";
+            u.rate = 0.85;
+            const v = findVoice();
+            if (v) u.voice = v;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(u);
+        });
     } catch {
         /* голос недоступний */
     }
