@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Admin from "./Admin.jsx";
-import { IMAGE_NAMES } from "./imageNames.js";
+import { IMAGE_GROUPS } from "./imageNames.js";
 
 /*
   Посилання учня: http://localhost:5173/?s=anna
@@ -77,23 +77,30 @@ function speak(text) {
 }
 
 /*
-  Картинки до слів лежать у public/images/ і підхоплюються автоматично за назвою:
-  слово "apple" -> public/images/apple.webp, "school bag" -> public/images/school-bag.webp
-  Інше розширення (png, jpg) змінюється однією константою нижче.
+  Картинки лежать у public/images/<папка>/<слово>.webp (кожна папка — група).
+  Які групи бачить учень, вчитель обирає в кабінеті (поле pictureGroups у JSON учня).
+  Список груп створює скрипт scripts/make-image-list.mjs
 */
-const IMG_EXT = "webp";
-
-function toSlug(en) {
-    return en
-        .toLowerCase()
-        .trim()
-        .replace(/\s+/g, "-")
-        .replace(/[^a-z0-9-]/g, "");
+function pictureUrl(groupId, file) {
+    const folder = groupId ? `${encodeURIComponent(groupId)}/` : "";
+    return `${import.meta.env.BASE_URL}images/${folder}${encodeURIComponent(file)}`;
 }
 
-function imageUrl(en) {
-    const slug = toSlug(en);
-    return `${import.meta.env.BASE_URL}images/${slug}.${IMG_EXT}`;
+// картинки вибраних груп; selected = undefined означає "усі групи"; однакові назви не повторюються
+function picturePool(selected) {
+    const groups = Array.isArray(selected)
+        ? IMAGE_GROUPS.filter((g) => selected.includes(g.id))
+        : IMAGE_GROUPS;
+    const seen = new Set();
+    const list = [];
+    groups.forEach((g) => {
+        g.images.forEach((img) => {
+            if (seen.has(img.name)) return;
+            seen.add(img.name);
+            list.push({ en: img.name, src: pictureUrl(g.id, img.file) });
+        });
+    });
+    return list;
 }
 
 /* ---------- icons ---------- */
@@ -313,12 +320,13 @@ function Build({ word, onNext }) {
     );
 }
 
-// Гра за картинками не залежить від словничка: слова беруться з IMAGE_NAMES
-function Picture({ word, onNext }) {
+// Гра за картинками не залежить від словничка: питання і варіанти беруться з вибраних груп
+function Picture({ word, pictures, onNext }) {
     const [picked, setPicked] = useState(null);
     const [options] = useState(() => {
-        const slug = toSlug(word.en);
-        const others = shuffle(IMAGE_NAMES.filter((n) => toSlug(n) !== slug)).slice(0, 3);
+        const others = shuffle(pictures.filter((p) => p.en !== word.en))
+            .slice(0, 3)
+            .map((p) => p.en);
         return shuffle([...others, word.en]);
     });
 
@@ -332,7 +340,7 @@ function Picture({ word, onNext }) {
     return (
         <>
             <div className="picture">
-                <img src={imageUrl(word.en)} alt="" />
+                <img src={word.src} alt="" />
             </div>
             <div className="grid grid--two">
                 {options.map((o, i) => {
@@ -387,7 +395,7 @@ function Trainer({ session, allWords, onLearned, onClose }) {
             {game === "flash" && <Flash key={i} word={word} onNext={next} />}
             {game === "quiz" && <Quiz key={i} word={word} all={allWords} onNext={next} />}
             {game === "build" && <Build key={i} word={word} onNext={next} />}
-            {game === "picture" && <Picture key={i} word={word} onNext={next} />}
+            {game === "picture" && <Picture key={i} word={word} pictures={session.pictures} onNext={next} />}
 
             <div className="actions">
                 <button className="btn btn--ghost" onClick={onClose}>Вийти</button>
@@ -514,6 +522,8 @@ function Student() {
     }
 
     const { name, words: rawWords } = student.data;
+    // гра 4 прихована, поки вчитель не ввімкне її в кабінеті (поле pictureGame)
+    const showPicture = Boolean(student.data.pictureGame);
     // останні додані слова зверху
     const words = [...rawWords].reverse().map((w) => ({ ...w, learned: learnedList.includes(w.en) }));
     const learned = words.filter((w) => w.learned);
@@ -524,11 +534,16 @@ function Student() {
     const onlyNew = onlyNewChecked && newCount > 0;
 
     const start = (game) => {
-        let pool;
         if (game === "picture") {
-            // картинки не залежать від словничка
-            pool = shuffle(IMAGE_NAMES.map((en) => ({ en })));
-        } else if (onlyNew) {
+            // картинки не залежать від словничка: беремо групи, які вибрав вчитель
+            const pictures = picturePool(student.data.pictureGroups);
+            if (pictures.length < 2) return alert("Немає картинок у вибраних папках 🙂");
+            const queue = shuffle(pictures);
+            return setSession({ game, queue: count ? queue.slice(0, count) : queue, pictures });
+        }
+
+        let pool;
+        if (onlyNew) {
             // тільки слова з позначкою new зі словничка
             pool = shuffle(todo.filter((w) => w.isNew));
         } else {
@@ -598,7 +613,7 @@ function Student() {
                                     <span className="muted"> {newCount ? `(${newCount})` : "(немає нових)"}</span>
                                 </span>
                             </label>
-                            <p className="muted small-note">Без галочки беруться всі слова зі словничка. Гра 4 від цього не залежить.</p>
+                            <p className="muted small-note">Без галочки беруться всі слова зі словничка.{showPicture && " Гра 4 від цього не залежить."}</p>
 
                             <h4 className="label">2. Оберіть інтерактивну гру:</h4>
                             {[
@@ -606,7 +621,7 @@ function Student() {
                                 ["quiz", "🎯", "Гра 2: Вікторина", "Обери 1 правильний переклад із 4"],
                                 ["build", "🧩", "Гра 3: Склади фразу", "Збери слово або фразу з літер"],
                                 ["picture", "🖼️", "Гра 4: Вгадай за картинкою", "Подивись на картинку та обери слово"],
-                            ].map(([key, icon, title, desc]) => (
+                            ].filter(([key]) => key !== "picture" || showPicture).map(([key, icon, title, desc]) => (
                                 <button key={key} className="game" onClick={() => start(key)}>
                                     <span className="game__icon">{icon}</span>
                                     <span>

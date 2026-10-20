@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Admin.css";
+import { IMAGE_GROUPS } from "./imageNames.js";
 
 /*
   Кабінет вчителя: .../?admin
@@ -288,6 +289,27 @@ export default function Admin() {
     writeDraft(id, next);
   };
 
+  // змінює поля учня; undefined видаляє поле з JSON
+  const setField = (patch) => {
+    const next = { ...data };
+    Object.entries(patch).forEach(([key, value]) => {
+      if (value === undefined) delete next[key];
+      else next[key] = value;
+    });
+    setData(next);
+    setDirty(true);
+    writeDraft(id, next);
+  };
+
+  // pictureGroups: немає поля = усі папки, масив = лише вибрані
+  const allGroups = !Array.isArray(data.pictureGroups);
+  const selectedGroups = Array.isArray(data.pictureGroups) ? data.pictureGroups : [];
+  const toggleGroup = (gid, on) =>
+      setField({
+        pictureGroups: on ? [...selectedGroups, gid] : selectedGroups.filter((x) => x !== gid),
+      });
+  const totalImages = IMAGE_GROUPS.reduce((sum, g) => sum + g.images.length, 0);
+
   /* --- учні --- */
 
   const addStudent = () => {
@@ -398,6 +420,61 @@ export default function Admin() {
 
           {id && (
               <>
+                {/* Гра 4 */}
+                <section className="card">
+                  <h2>🖼️ Гра «Вгадай за картинкою»</h2>
+                  <label className="check">
+                    <input
+                        type="checkbox"
+                        checked={Boolean(data.pictureGame)}
+                        onChange={(e) => setField({ pictureGame: e.target.checked ? true : undefined })}
+                    />
+                    <span>Показувати цю гру учню</span>
+                  </label>
+
+                  {data.pictureGame && (
+                      IMAGE_GROUPS.length === 0 ? (
+                          <p className="notice">
+                            Картинок ще немає. Поклади їх у public/images/ЇХНЯ-ПАПКА/ і запусти npm run images.
+                          </p>
+                      ) : (
+                          <>
+                            <p className="muted small">Які папки з картинками показувати:</p>
+                            <label className="check">
+                              <input
+                                  type="checkbox"
+                                  checked={allGroups}
+                                  onChange={(e) =>
+                                      setField({
+                                        pictureGroups: e.target.checked ? undefined : IMAGE_GROUPS.map((g) => g.id),
+                                      })
+                                  }
+                              />
+                              <span>Усі папки <span className="muted">({totalImages})</span></span>
+                            </label>
+
+                            <div className="group-list">
+                              {IMAGE_GROUPS.map((g) => (
+                                  <label className="check check--sub" key={g.id || "__root"}>
+                                    <input
+                                        type="checkbox"
+                                        disabled={allGroups}
+                                        checked={allGroups || selectedGroups.includes(g.id)}
+                                        onChange={(e) => toggleGroup(g.id, e.target.checked)}
+                                    />
+                                    <span>{g.label} <span className="muted">({g.images.length})</span></span>
+                                  </label>
+                              ))}
+                            </div>
+
+                            {!allGroups && selectedGroups.length === 0 && (
+                                <p className="notice">Обери хоча б одну папку, інакше гра буде порожньою.</p>
+                            )}
+                          </>
+                      )
+                  )}
+                </section>
+
                 {/* Одне слово */}
                 <section className="card">
                   <h2>Додати слово</h2>

@@ -165,3 +165,15 @@
   accent-color: var(--ok);
   cursor: pointer;
 }
+
+/* вибір папок з картинками */
+.group-list {
+  margin: 4px 0 0 6px;
+  padding-left: 12px;
+  border-left: 2px solid var(--line);
+}
+
+.check--sub {
+  margin-top: 10px;
+  font-weight: 600;
+}
