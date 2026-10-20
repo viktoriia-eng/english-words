@@ -144,3 +144,24 @@
   overflow-y: auto;
   padding-right: 4px;
 }
+
+/* галочка new біля слова в списку */
+.new-check {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.app .new-check input[type="checkbox"] {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  accent-color: var(--ok);
+  cursor: pointer;
+}

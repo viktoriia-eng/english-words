@@ -404,9 +404,12 @@ function WordList({ title, items, learned, onToggle }) {
             <h2>{title} ({items.length})</h2>
             {items.length === 0 && <p className="muted center">Тут поки порожньо</p>}
             {items.map((w) => (
-                <div className="row" key={w.en}>
+                <div className={"row" + (w.isNew && !learned ? " row--new" : "")} key={w.en}>
                     <div>
-                        <div className="en">{w.en}</div>
+                        <div className="en">
+                            {w.en}
+                            {w.isNew && !learned && <span className="badge-new">new</span>}
+                        </div>
                         <div className="muted">{w.uk}</div>
                     </div>
                     <div>
@@ -486,6 +489,7 @@ function Student() {
     const [count, setCount] = useState(5);
     const [session, setSession] = useState(null);
     const [open, setOpen] = useState(false);
+    const [onlyNewChecked, setOnlyNewChecked] = useState(false);
 
     // закриття вікна завершує і поточне тренування
     const closeTrainer = useCallback(() => {
@@ -515,11 +519,18 @@ function Student() {
     const learned = words.filter((w) => w.learned);
     const todo = words.filter((w) => !w.learned);
 
+    // скільки у словничку слів із позначкою new; без них галочка "тільки нові" не діє
+    const newCount = todo.filter((w) => w.isNew).length;
+    const onlyNew = onlyNewChecked && newCount > 0;
+
     const start = (game) => {
         let pool;
         if (game === "picture") {
             // картинки не залежать від словничка
             pool = shuffle(IMAGE_NAMES.map((en) => ({ en })));
+        } else if (onlyNew) {
+            // тільки слова з позначкою new зі словничка
+            pool = shuffle(todo.filter((w) => w.isNew));
         } else {
             const fresh = words.filter((w) => !w.learned);
             pool = shuffle(fresh.length ? fresh : words);
@@ -574,6 +585,20 @@ function Student() {
                                     </button>
                                 ))}
                             </div>
+
+                            <label className="opt-check">
+                                <input
+                                    type="checkbox"
+                                    checked={onlyNew}
+                                    disabled={newCount === 0}
+                                    onChange={(e) => setOnlyNewChecked(e.target.checked)}
+                                />
+                                <span>
+                                    Тільки нові слова
+                                    <span className="muted"> {newCount ? `(${newCount})` : "(немає нових)"}</span>
+                                </span>
+                            </label>
+                            <p className="muted small-note">Без галочки беруться всі слова зі словничка. Гра 4 від цього не залежить.</p>
 
                             <h4 className="label">2. Оберіть інтерактивну гру:</h4>
                             {[

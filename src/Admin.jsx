@@ -187,6 +187,7 @@ export default function Admin() {
 
   const [en, setEn] = useState("");
   const [uk, setUk] = useState("");
+  const [newFlag, setNewFlag] = useState(true); // чи позначати щойно додане слово як new
   const [newId, setNewId] = useState("");
   const [newName, setNewName] = useState("");
   const [msg, setMsg] = useState("");
@@ -260,13 +261,23 @@ export default function Admin() {
     const u = uk.trim();
     if (!e || !u) return flash("Потрібні слово і переклад");
     if (hasWord(data.words, e)) return flash("Таке слово вже є");
-    setWords([...data.words, { en: e, uk: u }]);
+    setWords([...data.words, { en: e, uk: u, ...(newFlag ? { isNew: true } : {}) }]);
     setEn("");
     setUk("");
   };
 
   const editUk = (i, value) => setWords(data.words.map((w, k) => (k === i ? { ...w, uk: value } : w)));
   const removeWord = (i) => setWords(data.words.filter((_, k) => k !== i));
+
+  // позначка new: у JSON є поле "isNew": true, без галочки поля немає
+  const setNew = (i, on) =>
+      setWords(
+          data.words.map((w, k) => {
+            if (k !== i) return w;
+            const { isNew, ...rest } = w; // eslint-disable-line no-unused-vars
+            return on ? { ...rest, isNew: true } : rest;
+          })
+      );
 
   // тема учня: "pink" записується у його JSON, без галочки поля theme немає
   const setPinkTheme = (on) => {
@@ -408,6 +419,10 @@ export default function Admin() {
                         autoComplete="off"
                     />
                   </label>
+                  <label className="check">
+                    <input type="checkbox" checked={newFlag} onChange={(e) => setNewFlag(e.target.checked)} />
+                    <span>🆕 Позначити як new</span>
+                  </label>
                   <button className="btn" onClick={addWord} disabled={busy}>Додати</button>
                   <button className="btn btn--ghost" onClick={runTranslate} disabled={busy}>Перекласти</button>
                 </section>
@@ -430,6 +445,14 @@ export default function Admin() {
                                   onChange={(e) => editUk(i, e.target.value)}
                                   aria-label={`Переклад ${w.en}`}
                               />
+                              <label className="new-check" title="Позначити слово як нове">
+                                <input
+                                    type="checkbox"
+                                    checked={Boolean(w.isNew)}
+                                    onChange={(e) => setNew(i, e.target.checked)}
+                                />
+                                <span>new</span>
+                              </label>
                               <button className="icon" onClick={() => removeWord(i)} aria-label="Видалити">🗑️</button>
                             </div>
                         ))}
