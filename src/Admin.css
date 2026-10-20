@@ -137,3 +137,10 @@
   accent-color: var(--primary);
   cursor: pointer;
 }
+
+/* список слів: видно ~8 рядків, далі прокрутка */
+.admin-list {
+  max-height: min(512px, 65vh);
+  overflow-y: auto;
+  padding-right: 4px;
+}

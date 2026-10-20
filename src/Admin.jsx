@@ -132,12 +132,6 @@ async function translate(text) {
   return /MYMEMORY WARNING/i.test(t) ? "" : t;
 }
 
-// "apple - яблуко", "dog = собака", "school bag: рюкзак", "cat" (без перекладу)
-function parseLine(line) {
-  const parts = line.trim().split(/\s*[—–=:]\s*|\s+-\s+/);
-  return { en: (parts[0] || "").trim(), uk: parts.slice(1).join(" - ").trim() };
-}
-
 const hasWord = (words, en) => words.some((w) => w.en.toLowerCase() === en.toLowerCase());
 
 const draftKey = (id) => `draft:${id}`;
@@ -193,7 +187,6 @@ export default function Admin() {
 
   const [en, setEn] = useState("");
   const [uk, setUk] = useState("");
-  const [bulk, setBulk] = useState("");
   const [newId, setNewId] = useState("");
   const [newName, setNewName] = useState("");
   const [msg, setMsg] = useState("");
@@ -270,35 +263,6 @@ export default function Admin() {
     setWords([...data.words, { en: e, uk: u }]);
     setEn("");
     setUk("");
-  };
-
-  const importBulk = async () => {
-    const lines = bulk.split("\n").filter((l) => l.trim());
-    if (!lines.length || busy) return;
-    setBusy(true);
-    const words = [...data.words];
-    let added = 0;
-    for (let i = 0; i < lines.length; i++) {
-      const { en: e, uk: given } = parseLine(lines[i]);
-      if (!e || hasWord(words, e)) continue;
-      let u = given;
-      if (!u) {
-        setMsg(`Перекладаю ${i + 1} з ${lines.length}…`);
-        try {
-          u = await translate(e);
-        } catch {
-          u = "";
-        }
-      }
-      if (u) {
-        words.push({ en: e, uk: u });
-        added++;
-      }
-    }
-    setWords(words);
-    setBulk("");
-    setBusy(false);
-    flash(`Додано слів: ${added}`);
   };
 
   const editUk = (i, value) => setWords(data.words.map((w, k) => (k === i ? { ...w, uk: value } : w)));
@@ -448,37 +412,28 @@ export default function Admin() {
                   <button className="btn btn--ghost" onClick={runTranslate} disabled={busy}>Перекласти</button>
                 </section>
 
-                {/* Імпорт */}
-                <section className="card">
-                  <h2>Імпорт списком</h2>
-                  <p className="muted small">
-                    Кожен рядок: слово — переклад (можна —, =, : або " - " з пробілами).
-                    Якщо перекладу немає, він підтягнеться сам.
-                  </p>
-                  <textarea
-                      value={bulk}
-                      onChange={(e) => setBulk(e.target.value)}
-                      placeholder={"apple - яблуко\ndog\nschool bag = рюкзак"}
-                  />
-                  <button className="btn" onClick={importBulk} disabled={busy}>Додати зі списку</button>
-                </section>
-
                 {/* Список */}
                 <section className="card">
                   <h2>Слова: {data.name} ({data.words.length})</h2>
                   {data.words.length === 0 && <p className="muted center">Поки порожньо</p>}
-                  {data.words.map((w, i) => (
-                      <div className="row" key={w.en}>
-                        <div className="en">{w.en}</div>
-                        <input
-                            className="row__uk"
-                            value={w.uk}
-                            onChange={(e) => editUk(i, e.target.value)}
-                            aria-label={`Переклад ${w.en}`}
-                        />
-                        <button className="icon" onClick={() => removeWord(i)} aria-label="Видалити">🗑️</button>
-                      </div>
-                  ))}
+                  <div className="admin-list">
+                    {/* останні додані слова зверху */}
+                    {data.words
+                        .map((w, i) => ({ w, i }))
+                        .reverse()
+                        .map(({ w, i }) => (
+                            <div className="row" key={w.en}>
+                              <div className="en">{w.en}</div>
+                              <input
+                                  className="row__uk"
+                                  value={w.uk}
+                                  onChange={(e) => editUk(i, e.target.value)}
+                                  aria-label={`Переклад ${w.en}`}
+                              />
+                              <button className="icon" onClick={() => removeWord(i)} aria-label="Видалити">🗑️</button>
+                            </div>
+                        ))}
+                  </div>
                 </section>
 
                 {/* Збереження */}

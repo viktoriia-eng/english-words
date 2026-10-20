@@ -510,7 +510,8 @@ function Student() {
     }
 
     const { name, words: rawWords } = student.data;
-    const words = rawWords.map((w) => ({ ...w, learned: learnedList.includes(w.en) }));
+    // останні додані слова зверху
+    const words = [...rawWords].reverse().map((w) => ({ ...w, learned: learnedList.includes(w.en) }));
     const learned = words.filter((w) => w.learned);
     const todo = words.filter((w) => !w.learned);
 
