@@ -26,5 +26,6 @@
       "uk": "автомобіль"
     }
   ],
-  "theme": "pink"
+  "theme": "pink",
+  "pictureGame": true
 }
