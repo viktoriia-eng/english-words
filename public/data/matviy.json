@@ -129,11 +129,6 @@
       "isNew": true
     },
     {
-      "en": "I",
-      "uk": "я",
-      "isNew": true
-    },
-    {
       "en": "they",
       "uk": "вони",
       "isNew": true
@@ -146,6 +141,16 @@
     {
       "en": "you",
       "uk": "ти",
+      "isNew": true
+    },
+    {
+      "en": "next to",
+      "uk": "біля (чогось)",
+      "isNew": true
+    },
+    {
+      "en": "helicopter",
+      "uk": "вертоліт",
       "isNew": true
     }
   ]
