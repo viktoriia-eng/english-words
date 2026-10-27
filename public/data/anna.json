@@ -2,28 +2,204 @@
   "name": "Анна",
   "words": [
     {
-      "en": "apple",
-      "uk": "яблуко"
+      "en": "pencil",
+      "uk": "олівець",
+      "isNew": true
     },
     {
-      "en": "cat",
-      "uk": "кіт"
+      "en": "pen",
+      "uk": "ручка",
+      "isNew": true
     },
     {
-      "en": "dog",
-      "uk": "собака"
+      "en": "ruler",
+      "uk": "лінійка",
+      "isNew": true
+    },
+    {
+      "en": "rubber",
+      "uk": "стирачка",
+      "isNew": true
     },
     {
       "en": "book",
-      "uk": "книга"
+      "uk": "книга",
+      "isNew": true
     },
     {
-      "en": "school bag",
-      "uk": "рюкзак"
+      "en": "copybook",
+      "uk": "Зошит",
+      "isNew": true
+    },
+    {
+      "en": "glue",
+      "uk": "клей",
+      "isNew": true
+    },
+    {
+      "en": "pencil case",
+      "uk": "пенал",
+      "isNew": true
+    },
+    {
+      "en": "window",
+      "uk": "вікно",
+      "isNew": true
+    },
+    {
+      "en": "door",
+      "uk": "двері",
+      "isNew": true
+    },
+    {
+      "en": "bin",
+      "uk": "смітник",
+      "isNew": true
+    },
+    {
+      "en": "board",
+      "uk": "дошка",
+      "isNew": true
+    },
+    {
+      "en": "chair",
+      "uk": "крісло",
+      "isNew": true
+    },
+    {
+      "en": "desk",
+      "uk": "парта",
+      "isNew": true
+    },
+    {
+      "en": "cupboard",
+      "uk": "шухлядки",
+      "isNew": true
+    },
+    {
+      "en": "clock",
+      "uk": "годинник",
+      "isNew": true
+    },
+    {
+      "en": "doll",
+      "uk": "лялька",
+      "isNew": true
+    },
+    {
+      "en": "teddy bear",
+      "uk": "Плюшевий ведмедик",
+      "isNew": true
+    },
+    {
+      "en": "plane",
+      "uk": "літак",
+      "isNew": true
     },
     {
       "en": "car",
-      "uk": "автомобіль"
+      "uk": "машина",
+      "isNew": true
+    },
+    {
+      "en": "present",
+      "uk": "подарунок",
+      "isNew": true
+    },
+    {
+      "en": "balloon",
+      "uk": "Кулька",
+      "isNew": true
+    },
+    {
+      "en": "cake",
+      "uk": "торт",
+      "isNew": true
+    },
+    {
+      "en": "lollipop",
+      "uk": "Льодяник",
+      "isNew": true
+    },
+    {
+      "en": "hat",
+      "uk": "капелюх",
+      "isNew": true
+    },
+    {
+      "en": "brown",
+      "uk": "коричневий",
+      "isNew": true
+    },
+    {
+      "en": "grey",
+      "uk": "сірий",
+      "isNew": true
+    },
+    {
+      "en": "kite",
+      "uk": "повітряний змій",
+      "isNew": true
+    },
+    {
+      "en": "robot",
+      "uk": "робот",
+      "isNew": true
+    },
+    {
+      "en": "toy",
+      "uk": "іграшка",
+      "isNew": true
+    },
+    {
+      "en": "puzzle",
+      "uk": "пазл",
+      "isNew": true
+    },
+    {
+      "en": "bike",
+      "uk": "велосипед",
+      "isNew": true
+    },
+    {
+      "en": "bag",
+      "uk": "сумка, рюкзак",
+      "isNew": true
+    },
+    {
+      "en": "I",
+      "uk": "я",
+      "isNew": true
+    },
+    {
+      "en": "he",
+      "uk": "він",
+      "isNew": true
+    },
+    {
+      "en": "she",
+      "uk": "вона",
+      "isNew": true
+    },
+    {
+      "en": "it",
+      "uk": "воно, це",
+      "isNew": true
+    },
+    {
+      "en": "they",
+      "uk": "вони",
+      "isNew": true
+    },
+    {
+      "en": "we",
+      "uk": "ми",
+      "isNew": true
+    },
+    {
+      "en": "you",
+      "uk": "ти",
+      "isNew": true
     }
   ],
   "theme": "pink"
