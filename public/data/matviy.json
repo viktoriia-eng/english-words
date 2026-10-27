@@ -112,6 +112,41 @@
     {
       "en": "under",
       "uk": "під (чимось)"
+    },
+    {
+      "en": "he",
+      "uk": "він",
+      "isNew": true
+    },
+    {
+      "en": "she",
+      "uk": "вона",
+      "isNew": true
+    },
+    {
+      "en": "it",
+      "uk": "воно, це",
+      "isNew": true
+    },
+    {
+      "en": "I",
+      "uk": "я",
+      "isNew": true
+    },
+    {
+      "en": "they",
+      "uk": "вони",
+      "isNew": true
+    },
+    {
+      "en": "we",
+      "uk": "ми",
+      "isNew": true
+    },
+    {
+      "en": "you",
+      "uk": "ти",
+      "isNew": true
     }
   ]
 }
