@@ -235,10 +235,14 @@ function Quiz({ word, all, onNext }) {
         return shuffle([...others, word.uk]);
     });
 
+    // слово озвучується автоматично, коли з'являється нове питання (Quiz створюється заново для кожного слова)
+    useEffect(() => {
+        speak(word.en);
+    }, [word.en]);
+
     const pick = (i) => {
         if (picked !== null) return;
         setPicked(i);
-        speak(word.en);
         setTimeout(() => onNext(options[i] === word.uk), 900);
     };
 

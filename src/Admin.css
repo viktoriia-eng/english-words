@@ -113,7 +113,8 @@
   padding: 8px 10px !important;
 }
 
-.row .en {
+/* лише для списку слів в адмінці, щоб не впливало на сторінку учня */
+.admin-list .row .en {
   min-width: 90px;
   max-width: 40%;
   word-break: break-word;
