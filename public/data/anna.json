@@ -3,173 +3,135 @@
   "words": [
     {
       "en": "pencil",
-      "uk": "олівець",
-      "isNew": true
+      "uk": "олівець"
     },
     {
       "en": "pen",
-      "uk": "ручка",
-      "isNew": true
+      "uk": "ручка"
     },
     {
       "en": "ruler",
-      "uk": "лінійка",
-      "isNew": true
+      "uk": "лінійка"
     },
     {
       "en": "rubber",
-      "uk": "стирачка",
-      "isNew": true
+      "uk": "стирачка"
     },
     {
       "en": "book",
-      "uk": "книга",
-      "isNew": true
+      "uk": "книга"
     },
     {
       "en": "copybook",
-      "uk": "Зошит",
-      "isNew": true
+      "uk": "Зошит"
     },
     {
       "en": "glue",
-      "uk": "клей",
-      "isNew": true
+      "uk": "клей"
     },
     {
       "en": "pencil case",
-      "uk": "пенал",
-      "isNew": true
+      "uk": "пенал"
     },
     {
       "en": "window",
-      "uk": "вікно",
-      "isNew": true
+      "uk": "вікно"
     },
     {
       "en": "door",
-      "uk": "двері",
-      "isNew": true
+      "uk": "двері"
     },
     {
       "en": "bin",
-      "uk": "смітник",
-      "isNew": true
+      "uk": "смітник"
     },
     {
       "en": "board",
-      "uk": "дошка",
-      "isNew": true
+      "uk": "дошка"
     },
     {
       "en": "chair",
-      "uk": "крісло",
-      "isNew": true
+      "uk": "крісло"
     },
     {
       "en": "desk",
-      "uk": "парта",
-      "isNew": true
+      "uk": "парта"
     },
     {
       "en": "cupboard",
-      "uk": "шухлядки",
-      "isNew": true
+      "uk": "шухлядки"
     },
     {
       "en": "clock",
-      "uk": "годинник",
-      "isNew": true
+      "uk": "годинник"
     },
     {
       "en": "doll",
-      "uk": "лялька",
-      "isNew": true
+      "uk": "лялька"
     },
     {
       "en": "teddy bear",
-      "uk": "Плюшевий ведмедик",
-      "isNew": true
+      "uk": "Плюшевий ведмедик"
     },
     {
       "en": "plane",
-      "uk": "літак",
-      "isNew": true
+      "uk": "літак"
     },
     {
       "en": "car",
-      "uk": "машина",
-      "isNew": true
+      "uk": "машина"
     },
     {
       "en": "present",
-      "uk": "подарунок",
-      "isNew": true
+      "uk": "подарунок"
     },
     {
       "en": "balloon",
-      "uk": "Кулька",
-      "isNew": true
+      "uk": "Кулька"
     },
     {
       "en": "cake",
-      "uk": "торт",
-      "isNew": true
+      "uk": "торт"
     },
     {
       "en": "lollipop",
-      "uk": "Льодяник",
-      "isNew": true
+      "uk": "Льодяник"
     },
     {
       "en": "hat",
-      "uk": "капелюх",
-      "isNew": true
+      "uk": "капелюх"
     },
     {
       "en": "brown",
-      "uk": "коричневий",
-      "isNew": true
+      "uk": "коричневий"
     },
     {
       "en": "grey",
-      "uk": "сірий",
-      "isNew": true
+      "uk": "сірий"
     },
     {
       "en": "kite",
-      "uk": "повітряний змій",
-      "isNew": true
+      "uk": "повітряний змій"
     },
     {
       "en": "robot",
-      "uk": "робот",
-      "isNew": true
+      "uk": "робот"
     },
     {
       "en": "toy",
-      "uk": "іграшка",
-      "isNew": true
+      "uk": "іграшка"
     },
     {
       "en": "puzzle",
-      "uk": "пазл",
-      "isNew": true
+      "uk": "пазл"
     },
     {
       "en": "bike",
-      "uk": "велосипед",
-      "isNew": true
+      "uk": "велосипед"
     },
     {
       "en": "bag",
-      "uk": "сумка, рюкзак",
-      "isNew": true
-    },
-    {
-      "en": "I",
-      "uk": "я",
-      "isNew": true
+      "uk": "сумка, рюкзак"
     },
     {
       "en": "he",
@@ -199,6 +161,26 @@
     {
       "en": "you",
       "uk": "ти",
+      "isNew": true
+    },
+    {
+      "en": "on",
+      "uk": "на (чомусь)",
+      "isNew": true
+    },
+    {
+      "en": "in",
+      "uk": "в (чомусь)",
+      "isNew": true
+    },
+    {
+      "en": "under",
+      "uk": "під (чимось)",
+      "isNew": true
+    },
+    {
+      "en": "next to",
+      "uk": "біля (чогось)",
       "isNew": true
     }
   ],
