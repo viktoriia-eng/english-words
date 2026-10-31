@@ -115,33 +115,27 @@
     },
     {
       "en": "he",
-      "uk": "він",
-      "isNew": true
+      "uk": "він"
     },
     {
       "en": "she",
-      "uk": "вона",
-      "isNew": true
+      "uk": "вона"
     },
     {
       "en": "it",
-      "uk": "воно, це",
-      "isNew": true
+      "uk": "воно, це"
     },
     {
       "en": "they",
-      "uk": "вони",
-      "isNew": true
+      "uk": "вони"
     },
     {
       "en": "we",
-      "uk": "ми",
-      "isNew": true
+      "uk": "ми"
     },
     {
       "en": "you",
-      "uk": "ти",
-      "isNew": true
+      "uk": "ти"
     },
     {
       "en": "next to",
@@ -151,6 +145,26 @@
     {
       "en": "helicopter",
       "uk": "вертоліт",
+      "isNew": true
+    },
+    {
+      "en": "circle",
+      "uk": "коло",
+      "isNew": true
+    },
+    {
+      "en": "triangle",
+      "uk": "трикутник",
+      "isNew": true
+    },
+    {
+      "en": "square",
+      "uk": "квадрат",
+      "isNew": true
+    },
+    {
+      "en": "rectangle",
+      "uk": "Прямокутник",
       "isNew": true
     }
   ]
