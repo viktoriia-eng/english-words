@@ -60,6 +60,51 @@
     {
       "en": "cupboard",
       "uk": "Шухлядки"
+    },
+    {
+      "en": "ball",
+      "uk": "м'яч",
+      "isNew": true
+    },
+    {
+      "en": "car",
+      "uk": "автомобіль",
+      "isNew": true
+    },
+    {
+      "en": "plane",
+      "uk": "літак",
+      "isNew": true
+    },
+    {
+      "en": "kite",
+      "uk": "повітряний змій",
+      "isNew": true
+    },
+    {
+      "en": "robot",
+      "uk": "робот",
+      "isNew": true
+    },
+    {
+      "en": "bike",
+      "uk": "велосипед",
+      "isNew": true
+    },
+    {
+      "en": "puzzle",
+      "uk": "пазл",
+      "isNew": true
+    },
+    {
+      "en": "doll",
+      "uk": "лялька",
+      "isNew": true
+    },
+    {
+      "en": "teddy bear",
+      "uk": "Плюшевий ведмедик",
+      "isNew": true
     }
   ]
 }
