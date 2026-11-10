@@ -1,0 +1,50 @@
+{
+  "name": "Orest",
+  "words": [
+    {
+      "en": "Car",
+      "uk": "Машинка",
+      "isNew": true
+    },
+    {
+      "en": "Kite",
+      "uk": "повітряний змій",
+      "isNew": true
+    },
+    {
+      "en": "Bike",
+      "uk": "Велосипед",
+      "isNew": true
+    },
+    {
+      "en": "Plane",
+      "uk": "літак",
+      "isNew": true
+    },
+    {
+      "en": "Teddy bear",
+      "uk": "Плюшевий ведмедик",
+      "isNew": true
+    },
+    {
+      "en": "doll",
+      "uk": "лялька",
+      "isNew": true
+    },
+    {
+      "en": "robot",
+      "uk": "робот",
+      "isNew": true
+    },
+    {
+      "en": "ball",
+      "uk": "м'яч",
+      "isNew": true
+    },
+    {
+      "en": "puzzle",
+      "uk": "пазл",
+      "isNew": true
+    }
+  ]
+}
