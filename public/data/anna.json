@@ -135,52 +135,52 @@
     },
     {
       "en": "he",
-      "uk": "він",
-      "isNew": true
+      "uk": "він"
     },
     {
       "en": "she",
-      "uk": "вона",
-      "isNew": true
+      "uk": "вона"
     },
     {
       "en": "it",
-      "uk": "воно, це",
-      "isNew": true
+      "uk": "воно, це"
     },
     {
       "en": "they",
-      "uk": "вони",
-      "isNew": true
+      "uk": "вони"
     },
     {
       "en": "we",
-      "uk": "ми",
-      "isNew": true
+      "uk": "ми"
     },
     {
       "en": "you",
-      "uk": "ти",
-      "isNew": true
+      "uk": "ти"
     },
     {
       "en": "on",
-      "uk": "на (чомусь)",
-      "isNew": true
+      "uk": "на (чомусь)"
     },
     {
       "en": "in",
-      "uk": "в (чомусь)",
-      "isNew": true
+      "uk": "в (чомусь)"
     },
     {
       "en": "under",
-      "uk": "під (чимось)",
-      "isNew": true
+      "uk": "під (чимось)"
     },
     {
       "en": "next to",
-      "uk": "біля (чогось)",
+      "uk": "біля (чогось)"
+    },
+    {
+      "en": "my",
+      "uk": "Моя",
+      "isNew": true
+    },
+    {
+      "en": "your",
+      "uk": "твій",
       "isNew": true
     }
   ],
