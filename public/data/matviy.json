@@ -166,6 +166,16 @@
       "en": "rectangle",
       "uk": "Прямокутник",
       "isNew": true
+    },
+    {
+      "en": "my",
+      "uk": "Мій",
+      "isNew": true
+    },
+    {
+      "en": "your",
+      "uk": "твій",
+      "isNew": true
     }
   ]
 }
