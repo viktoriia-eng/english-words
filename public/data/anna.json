@@ -175,12 +175,35 @@
     },
     {
       "en": "my",
-      "uk": "Моя",
-      "isNew": true
+      "uk": "Моя"
     },
     {
       "en": "your",
-      "uk": "твій",
+      "uk": "твій"
+    },
+    {
+      "en": "triangle",
+      "uk": "трикутник",
+      "isNew": true
+    },
+    {
+      "en": "square",
+      "uk": "квадрат",
+      "isNew": true
+    },
+    {
+      "en": "rectangle",
+      "uk": "Прямокутник",
+      "isNew": true
+    },
+    {
+      "en": "circle",
+      "uk": "коло",
+      "isNew": true
+    },
+    {
+      "en": "helicopter",
+      "uk": "вертоліт",
       "isNew": true
     }
   ],
