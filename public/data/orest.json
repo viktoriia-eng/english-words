@@ -45,6 +45,12 @@
       "en": "puzzle",
       "uk": "пазл",
       "isNew": true
+    },
+    {
+      "en": "toy",
+      "uk": "іграшка",
+      "isNew": true
     }
-  ]
+  ],
+  "theme": "pink"
 }
