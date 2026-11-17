@@ -139,43 +139,35 @@
     },
     {
       "en": "next to",
-      "uk": "біля (чогось)",
-      "isNew": true
+      "uk": "біля (чогось)"
     },
     {
       "en": "helicopter",
-      "uk": "вертоліт",
-      "isNew": true
+      "uk": "вертоліт"
     },
     {
       "en": "circle",
-      "uk": "коло",
-      "isNew": true
+      "uk": "коло"
     },
     {
       "en": "triangle",
-      "uk": "трикутник",
-      "isNew": true
+      "uk": "трикутник"
     },
     {
       "en": "square",
-      "uk": "квадрат",
-      "isNew": true
+      "uk": "квадрат"
     },
     {
       "en": "rectangle",
-      "uk": "Прямокутник",
-      "isNew": true
+      "uk": "Прямокутник"
     },
     {
       "en": "my",
-      "uk": "Мій",
-      "isNew": true
+      "uk": "Мій"
     },
     {
       "en": "your",
-      "uk": "твій",
-      "isNew": true
+      "uk": "твій"
     }
   ]
 }
