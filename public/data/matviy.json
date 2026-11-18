@@ -168,6 +168,31 @@
     {
       "en": "your",
       "uk": "твій"
+    },
+    {
+      "en": "happy",
+      "uk": "щасливий",
+      "isNew": true
+    },
+    {
+      "en": "sad",
+      "uk": "сумний",
+      "isNew": true
+    },
+    {
+      "en": "angry",
+      "uk": "злий",
+      "isNew": true
+    },
+    {
+      "en": "hungry",
+      "uk": "голодний",
+      "isNew": true
+    },
+    {
+      "en": "thirsty",
+      "uk": "спраглий (той що хоче пити)",
+      "isNew": true
     }
   ]
 }
