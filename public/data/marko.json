@@ -105,6 +105,16 @@
       "en": "teddy bear",
       "uk": "Плюшевий ведмедик",
       "isNew": true
+    },
+    {
+      "en": "my",
+      "uk": "Мій",
+      "isNew": true
+    },
+    {
+      "en": "your",
+      "uk": "твій",
+      "isNew": true
     }
   ]
 }
