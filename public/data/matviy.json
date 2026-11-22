@@ -193,6 +193,16 @@
       "en": "thirsty",
       "uk": "спраглий (той що хоче пити)",
       "isNew": true
+    },
+    {
+      "en": "Scared",
+      "uk": "наляканий",
+      "isNew": true
+    },
+    {
+      "en": "tired",
+      "uk": "втомлений",
+      "isNew": true
     }
   ]
 }
