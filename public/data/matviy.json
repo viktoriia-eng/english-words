@@ -203,6 +203,26 @@
       "en": "tired",
       "uk": "втомлений",
       "isNew": true
+    },
+    {
+      "en": "tall",
+      "uk": "високий",
+      "isNew": true
+    },
+    {
+      "en": "short",
+      "uk": "низький",
+      "isNew": true
+    },
+    {
+      "en": "old",
+      "uk": "старий",
+      "isNew": true
+    },
+    {
+      "en": "young",
+      "uk": "молодий",
+      "isNew": true
     }
   ]
 }
