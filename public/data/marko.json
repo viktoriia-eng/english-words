@@ -115,6 +115,31 @@
       "en": "your",
       "uk": "твій",
       "isNew": true
+    },
+    {
+      "en": "helicopter",
+      "uk": "вертоліт",
+      "isNew": true
+    },
+    {
+      "en": "square",
+      "uk": "квадрат",
+      "isNew": true
+    },
+    {
+      "en": "circle",
+      "uk": "коло",
+      "isNew": true
+    },
+    {
+      "en": "rectangle",
+      "uk": "Прямокутник",
+      "isNew": true
+    },
+    {
+      "en": "triangle",
+      "uk": "трикутник",
+      "isNew": true
     }
   ]
 }
