@@ -223,6 +223,21 @@
       "en": "young",
       "uk": "молодий",
       "isNew": true
+    },
+    {
+      "en": "on the beach",
+      "uk": "На пляжі",
+      "isNew": true
+    },
+    {
+      "en": "in the mountains",
+      "uk": "у горах",
+      "isNew": true
+    },
+    {
+      "en": "in a city",
+      "uk": "в місті",
+      "isNew": true
     }
   ]
 }
