@@ -50,6 +50,36 @@
       "en": "toy",
       "uk": "іграшка",
       "isNew": true
+    },
+    {
+      "en": "pen",
+      "uk": "ручка",
+      "isNew": true
+    },
+    {
+      "en": "pencil",
+      "uk": "олівець",
+      "isNew": true
+    },
+    {
+      "en": "rubber",
+      "uk": "стирачка",
+      "isNew": true
+    },
+    {
+      "en": "copybook",
+      "uk": "Зошит",
+      "isNew": true
+    },
+    {
+      "en": "crayon",
+      "uk": "восковий олівець",
+      "isNew": true
+    },
+    {
+      "en": "desk",
+      "uk": "парта",
+      "isNew": true
     }
   ],
   "theme": "pink"
