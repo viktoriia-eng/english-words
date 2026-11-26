@@ -171,23 +171,19 @@
     },
     {
       "en": "happy",
-      "uk": "щасливий",
-      "isNew": true
+      "uk": "щасливий"
     },
     {
       "en": "sad",
-      "uk": "сумний",
-      "isNew": true
+      "uk": "сумний"
     },
     {
       "en": "angry",
-      "uk": "злий",
-      "isNew": true
+      "uk": "злий"
     },
     {
       "en": "hungry",
-      "uk": "голодний",
-      "isNew": true
+      "uk": "голодний"
     },
     {
       "en": "thirsty",
@@ -196,33 +192,27 @@
     },
     {
       "en": "Scared",
-      "uk": "наляканий",
-      "isNew": true
+      "uk": "наляканий"
     },
     {
       "en": "tired",
-      "uk": "втомлений",
-      "isNew": true
+      "uk": "втомлений"
     },
     {
       "en": "tall",
-      "uk": "високий",
-      "isNew": true
+      "uk": "високий"
     },
     {
       "en": "short",
-      "uk": "низький",
-      "isNew": true
+      "uk": "низький"
     },
     {
       "en": "old",
-      "uk": "старий",
-      "isNew": true
+      "uk": "старий"
     },
     {
       "en": "young",
-      "uk": "молодий",
-      "isNew": true
+      "uk": "молодий"
     },
     {
       "en": "on the beach",
